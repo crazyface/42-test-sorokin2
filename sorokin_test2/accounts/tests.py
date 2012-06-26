@@ -6,11 +6,24 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from django_webtest import WebTest
+from django.core.urlresolvers import reverse
+from sorokin_test2.accounts.models import Profile
 
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+class ProfileViewTestCase(WebTest):
+
+    def test_view(self):
+        response = self.app.get(reverse('home'))
+        self.assertEqual(response.status_code, 200)
+
+    def test_context(self):
+        expected = Profile.objects.all()[0]
+        response = self.app.get(reverse('home'))
+        self.assertEqual(expected, response.context['profile'])
+
+    def test_template(self):
+        expected = Profile.objects.all()[0]
+        response = self.app.get(reverse('home'))
+        self.assertContains(response, expected.first_name)
+        self.assertContains(response, expected.email)

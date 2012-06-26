@@ -1,0 +1,23 @@
+body, html{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#content{
+	width: 800px;
+	margin: 0px auto;
+}
+
+#content h3{
+	font-size: 22px;
+	padding: 2px;
+	font-family: Georgia, serif;
+	line-height: 26px;
+	font-weight: normal;
+}
+
+#content table{
+	width: 100%;
+	text-align: left;
+}

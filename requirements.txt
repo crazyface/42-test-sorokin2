@@ -1,2 +1,4 @@
 django==1.4
 south
+webtest
+django-webtest
