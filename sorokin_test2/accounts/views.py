@@ -8,4 +8,4 @@ class ProfileView(DetailView):
     context_object_name = 'profile'
 
     def get_object(self, **kwargs):
-        return self.model.objects.all()[0]
+        return self.model.objects.get(pk=1)

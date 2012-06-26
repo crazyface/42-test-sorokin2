@@ -18,12 +18,12 @@ class ProfileViewTestCase(WebTest):
         self.assertEqual(response.status_code, 200)
 
     def test_context(self):
-        expected = Profile.objects.all()[0]
+        expected = Profile.objects.get(pk=1)
         response = self.app.get(reverse('home'))
         self.assertEqual(expected, response.context['profile'])
 
     def test_template(self):
-        expected = Profile.objects.all()[0]
+        expected = Profile.objects.get(pk=1)
         response = self.app.get(reverse('home'))
         self.assertContains(response, expected.first_name)
         self.assertContains(response, expected.email)
