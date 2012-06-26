@@ -16,5 +16,19 @@
       "email": "admin@mail.com", 
       "date_joined": "2012-06-26T18:19:10.821Z"
     }
+  },
+  {
+    "pk": 1, 
+    "model": "accounts.profile", 
+    "fields": {
+      "first_name": "Alexandr", 
+      "last_name": "Sorokin", 
+      "other_contacts": "", 
+      "date_of_birth": "1988-12-08", 
+      "skype": "caullla", 
+      "jabber": "bsorokind@gmail.com", 
+      "email": "bsorokind@gmail.com", 
+      "biography": "python/django developer"
+    }
   }
 ]

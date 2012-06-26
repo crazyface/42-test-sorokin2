@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<table>
+		<tr><th></th><th></th><th>Contacts</th><th></th>
+		<tr>
+			<td>Name:</td><td>{{ profile.first_name }}</td><td>Email:</td><td>{{ profile.email }}</td>
+		</tr>
+		<tr>
+			<td>Last name:</td><td>{{ profile.last_name }}</td><td>Jabber:</td><td>{{ profile.jabber }}</td>
+		</tr>
+		<tr>
+			<td>Date of birth:</td><td>{{ profile.date_of_birth }}</td><td>Skype:</td><td>{{ profile.skype }}</td>
+		</tr>
+		<tr>
+			<td>Bio:</td><td>{{ profile.biography }}</td><td>Other contacts:</td><td></td>
+		</tr>
+	</table>
+{% endblock %}

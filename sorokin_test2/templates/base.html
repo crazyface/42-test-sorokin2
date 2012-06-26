@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+        <title>{% block title %}{% endblock %}</title>
+        <link href="{{ STATIC_URL }}css/style.css" type="text/css" media="all" rel="stylesheet">
+        {% block extrahead %}{% endblock %}
+    </head>
+    <body>
+    	<div id='content'>
+			<h3 class="text needcss">42 Coffee Cups Test Assignment</h3>
+	    	{% block content %}
+	    	{% endblock %}
+    	</div>
+    </body>
+</html>
