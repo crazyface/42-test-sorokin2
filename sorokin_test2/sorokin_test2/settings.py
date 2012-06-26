@@ -108,7 +108,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'sorokin_test2.sorokin_test2.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'sorokin_test2.wsgi.application'
+WSGI_APPLICATION = 'sorokin_test2.sorokin_test2.wsgi.application'
 
 TEMPLATE_DIRS = (
     os.path.join(PROJ_ROOT, 'templates'),
