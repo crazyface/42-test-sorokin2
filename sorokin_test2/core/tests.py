@@ -11,6 +11,9 @@ from sorokin_test2.accounts.models import Profile
 from sorokin_test2.core.models import Request
 from django.conf import settings
 from sorokin_test2.core.middlewares import RequestStatistic
+from sorokin_test2.core.contextprocessors import settings_processor
+from django.test.client import RequestFactory
+from mock import Mock
 
 
 class RequestMiddlewareTestCase(WebTest):
@@ -59,3 +62,15 @@ class RequestViewTestCase(WebTest):
         response = self.app.get(reverse('core:requests'))
         self.assertContains(response, expected[0].path)
         self.assertContains(response, expected[1].path)
+
+
+class SettingsContextProcessorTestCase(WebTest):
+    def test_settings_processor(self):
+
+        self.assertTrue(settings_processor(Mock()).has_key('settings'))
+        self.assertEqual(settings_processor(Mock())['settings'], settings)
+
+    def test_settings_processor_on_view(self):
+        response = self.app.get(reverse('home'))
+        self.assertTrue('settings' in response.context)
+        self.assertEqual(response.context['settings'], settings)
