@@ -4,16 +4,25 @@
 	<table>
 		<tr><th></th><th></th><th>Contacts</th><th></th>
 		<tr>
-			<td>Name:</td><td>{{ profile.first_name }}</td><td>Email:</td><td>{{ profile.email }}</td>
+			<td>{{ form.first_name.label_tag }}:</td><td>{{ profile.first_name }}</td><td>{{ form.email.label_tag }}:</td><td>{{ profile.email }}</td>
 		</tr>
 		<tr>
-			<td>Last name:</td><td>{{ profile.last_name }}</td><td>Jabber:</td><td>{{ profile.jabber }}</td>
+			<td>{{ form.last_name.label_tag }}:</td><td>{{ profile.last_name }}</td><td>{{ form.jabber.label_tag }}:</td><td>{{ profile.jabber }}</td>
 		</tr>
 		<tr>
-			<td>Date of birth:</td><td>{{ profile.date_of_birth }}</td><td>Skype:</td><td>{{ profile.skype }}</td>
+			<td>{{ form.date_of_birth.label_tag }}:</td><td>{{ profile.date_of_birth }}</td><td>{{ form.skype.label_tag }}:</td><td>{{ profile.skype }}</td>
 		</tr>
 		<tr>
-			<td>Bio:</td><td>{{ profile.biography }}</td><td>Other contacts:</td><td></td>
+			<td colspan="2" rowspan="2">
+				{% if profile.photo %}
+					<img class='photo' src="{{ profile.photo.url }}" />
+				{% else %}
+					no photo
+				{% endif %}
+			</td><td>{{ form.other_contacts.label_tag }}: {{ profile.other_contacts }}</td><td></td>
+		</tr>
+		<tr>
+			<td>{{ form.biography.label_tag }}:</td><td>{{ profile.biography }}</td>
 		</tr>
 	</table>
 {% endblock %}

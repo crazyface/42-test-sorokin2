@@ -116,6 +116,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "sorokin_test2.core.contextprocessors.settings_processor",
 )
 
+LOGIN_REDIRECT_URL = '/'
+
 ROOT_URLCONF = 'sorokin_test2.sorokin_test2.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
