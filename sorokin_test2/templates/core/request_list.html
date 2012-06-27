@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class='requests'>
+	<tr>
+		<th>Path</th>
+		<th>Code</th>
+		<th>Method</th>
+		<th>Params</th>
+		<th>Time</th>
+	<tr>
+	{% for request_obj in object_list %}
+	<tr>
+		<td>{{ request_obj.path }}</td>
+		<td>{{ request_obj.status_code }}</td>
+		<td>{{ request_obj.method }}</td>
+		<td>{{ request_obj.params }}</td>
+		<td class='created_at'>{{ request_obj.created_at|date:'Y-M-d h:m:s' }}</td>
+	</tr>
+	{% endfor %}
+</table>
+{% endblock %}

@@ -7,6 +7,7 @@ body, html{
 #content{
 	width: 800px;
 	margin: 0px auto;
+	min-height: 600px;
 }
 
 #content h3{
@@ -20,4 +21,28 @@ body, html{
 #content table{
 	width: 100%;
 	text-align: left;
+}
+
+.requests, .requests * {
+	border: 1px solid #ccc;
+}
+.requests td,.requests th {
+	margin: 0;
+	padding: 5px;
+}
+.requests .created_at{
+	white-space: nowrap;
+}
+
+#footer{
+	width: 800px;
+	margin: 0px auto;
+	margin-top: 40px;
+}
+
+#footer a{
+	text-decoration: none;
+	color: #3e3e3e;
+	font-weight: bold;
+	margin: 0 20px;
 }
