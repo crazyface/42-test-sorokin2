@@ -8,6 +8,7 @@ Replace this with more appropriate tests for your application.
 from django_webtest import WebTest
 from django.core.urlresolvers import reverse
 from sorokin_test2.accounts.models import Profile
+from webtest.app import AppError
 
 
 class ProfileViewTestCase(WebTest):
@@ -26,3 +27,20 @@ class ProfileViewTestCase(WebTest):
         response = self.app.get(reverse('home'))
         self.assertContains(response, expected.first_name)
         self.assertContains(response, expected.email)
+
+    def test_edit_logout(self):
+        self.assertRaises(AppError, self.app.post, reverse('home'))
+
+    def test_edit_login(self):
+        auth_form = self.app.get(reverse('login')).form
+        auth_form['username'] = 'admin'
+        auth_form['password'] = 'admin'
+        edit_form = auth_form.submit().follow().form
+        first_name = 'first_name test'
+        last_name = 'last_name test'
+        edit_form['first_name'] = first_name
+        edit_form['last_name'] = last_name
+        edit_form.submit()
+        profile = Profile.objects.filter(id=1, first_name=first_name,
+                                                        last_name=last_name)
+        self.assertTrue(profile.exists())

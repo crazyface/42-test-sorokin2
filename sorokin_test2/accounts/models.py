@@ -12,6 +12,8 @@ class Profile(models.Model):
     jabber = models.EmailField(max_length=255)
     skype = models.CharField(max_length=255)
     other_contacts = models.TextField(blank=True, null=True)
+    photo = models.ImageField(upload_to='photos', blank=True, null=True)
+
 
     def __unicode__(self):
         return '{0} {1}'.format(self.first_name, self.last_name)

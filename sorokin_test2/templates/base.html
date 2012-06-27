@@ -7,7 +7,15 @@
     </head>
     <body>
     	<div id='content'>
-			<h3 class="text needcss">42 Coffee Cups Test Assignment</h3>
+			<h3 class="text needcss">42 Coffee Cups Test Assignment
+				<span class='right'>
+					{% if user.is_authenticated %}
+						Hello, {{ user }}.<a href='{% url logout %}'>logout</a>
+					{% else %}
+						<a href='{% url login %}'>login</a>
+					{% endif %}				
+				</span>
+			</h3>
 	    	{% block content %}
 	    	{% endblock %}
     	</div>

@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<form method='POST' enctype="multipart/form-data">{% csrf_token %}
+		<table>
+			<tr><th></th><th></th><th>Contacts</th><th></th>
+			<tr>
+				<td>{{ form.first_name.label_tag }}:</td><td>{{ form.first_name.errors }}{{ form.first_name }}</td><td>{{ form.email.label_tag }}:</td><td>{{ form.email.errors }}{{ form.email }}</td>
+			</tr>
+			<tr>
+				<td>{{ form.last_name.label_tag }}:</td><td>{{ form.last_name.errors }}{{ form.last_name }}</td><td>{{ form.jabber.label_tag }}:</td><td>{{ form.jabber.errors }}{{ form.jabber }}</td>
+			</tr>
+			<tr>
+				<td>{{ form.date_of_birth.label_tag }}:</td><td>{{ form.date_of_birth.errors }}{{ form.date_of_birth }}</td><td>{{ form.skype.label_tag }}:</td><td>{{ form.skype.errors }}{{ form.skype }}</td>
+			</tr>
+			<tr>
+				<td colspan="2" rowspan="2">
+					{% if profile.photo %}
+						<img class='photo' src="{{ profile.photo.url }}" />
+					{% else %}
+						no photo
+					{% endif %}
+					{{ form.photo }}
+				</td><td>{{ form.other_contacts.label_tag }}: </td><td>{{ form.other_contacts.erros }}{{ form.other_contacts }}</td>
+			</tr>
+			<tr>
+				<td>Bio:</td><td>{{ form.biography.errors }}{{ form.biography }}</td>
+			</tr>
+		</table>
+			<input type='submit' value='save'> <a href='{% url home %}'>Cancel</a>
+	</form>
+{% endblock %}
