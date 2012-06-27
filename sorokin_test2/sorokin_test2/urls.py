@@ -6,8 +6,8 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    # url(r'^$', 'sorokin_test2.views.home', name='home'),
-     url(r'^$', include('sorokin_test2.accounts.urls')),
+     (r'^$', include('sorokin_test2.accounts.urls')),
+     (r'^core/', include('sorokin_test2.core.urls', namespace='core')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
      url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
