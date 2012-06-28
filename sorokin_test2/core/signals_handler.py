@@ -13,7 +13,7 @@ def create_update_handler(sender, instance, created, **kwargs):
             return
         ctype = ContentType.objects.get_for_model(sender)
         action = 'create' if created else 'update'
-            DbActivity.objects.create(model=ctype,
+        DbActivity.objects.create(model=ctype,
                                   obj_pk=instance.pk,
                                   action=action)
     except DatabaseError:
