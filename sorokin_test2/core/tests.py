@@ -13,10 +13,11 @@ from django.conf import settings
 from sorokin_test2.core.middlewares import RequestStatistic
 from sorokin_test2.core.contextprocessors import settings_processor
 from django.test.client import RequestFactory
-from mock import Mock
+from mock import Mock, patch
 from sorokin_test2.core.templatetags.admin_helper import edit_link
 from django.contrib.auth.models import User
-
+from sorokin_test2.core.management.commands.show_models import Command
+from django.core.management import call_command
 
 class RequestMiddlewareTestCase(WebTest):
 
@@ -81,9 +82,32 @@ class SettingsContextProcessorTestCase(WebTest):
 class EditLinkTestCase(WebTest):
     def test_tag(self):
         obj = Profile.objects.get(id=1)
-        self.assertEqual(reverse('admin:accounts_profile_change', args=[obj.id]),
+        self.assertEqual(reverse('admin:accounts_profile_change',
+                                                                args=[obj.id]),
                          edit_link(obj))
         user = User.objects.get(id=1)
         self.assertEqual(reverse('admin:auth_user_change', args=[user.id]),
                          edit_link(user))
 
+
+class ShowModelsCommandTestCase(WebTest):
+    class DummyStdout:
+        def __init__(self):
+            self.out = ''
+
+        def write(self, output):
+                self.out += output
+
+    def test_command_with_params(self):
+        stdout = self.DummyStdout()
+        call_command('show_models', 'accounts.Profile',**{'stdout': stdout,
+                                              'stderr': self.DummyStdout()})
+        self.assertTrue('accounts.Profile' in stdout.out)
+        self.assertFalse('core.Request' in stdout.out)
+
+    def test_command_without_params(self):
+        stdout = self.DummyStdout()
+        call_command('show_models', **{'stdout': stdout,
+                                       'stderr': self.DummyStdout()})
+        self.assertTrue('accounts.Profile' in stdout.out)
+        self.assertTrue('core.Request' in stdout.out)
