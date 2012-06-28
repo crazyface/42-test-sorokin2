@@ -8,25 +8,28 @@ exclude = [ContentType, DbActivity]
 
 
 def create_update_handler(sender, instance, created, **kwargs):
-    if sender in exclude:
-        return
-    ctype = ContentType.objects.get_for_model(sender)
-    action = 'create' if created else 'update'
     try:
-        DbActivity.objects.create(model=ctype,
-                              obj_pk=instance.pk,
-                              action=action)
+        if sender in exclude:
+            return
+        ctype = ContentType.objects.get_for_model(sender)
+        action = 'create' if created else 'update'
+            DbActivity.objects.create(model=ctype,
+                                  obj_pk=instance.pk,
+                                  action=action)
     except DatabaseError:
         pass
 
 
 def delete_handler(sender, instance, **kwargs):
-    if sender in exclude:
-        return
-    ctype = ContentType.objects.get_for_model(sender)
-    DbActivity.objects.create(model=ctype,
-                              obj_pk=instance.pk,
-                              action='delete')
+    try:
+        if sender in exclude:
+            return
+        ctype = ContentType.objects.get_for_model(sender)
+        DbActivity.objects.create(model=ctype,
+                                  obj_pk=instance.pk,
+                                  action='delete')
+    except DatabaseError:
+        pass
 
 post_save.connect(create_update_handler,
                   dispatch_uid='create_update')
