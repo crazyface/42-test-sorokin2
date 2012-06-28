@@ -17,10 +17,17 @@ class Request(models.Model):
 
 
 class DbActivity(models.Model):
-    ACTION_CHOICES = [['Create', 'create'],
-                      ['Update', 'update'],
-                      ['Delete', 'delete']]
+    ACTION_CHOICES = [['create', 'create'],
+                      ['update', 'update'],
+                      ['delete', 'delete']]
 
     model = models.ForeignKey(ContentType)
     obj_pk = models.CharField(max_length=255)
     action = models.CharField(max_length=30, choices=ACTION_CHOICES)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __unicode__(self):
+        return '{0} with pk {1} was {2} at {3}'.format(self.model,
+                                                       self.obj_pk,
+                                                       self.action,
+                                                       self.created_at)
