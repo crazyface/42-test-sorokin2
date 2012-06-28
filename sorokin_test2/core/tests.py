@@ -14,6 +14,8 @@ from sorokin_test2.core.middlewares import RequestStatistic
 from sorokin_test2.core.contextprocessors import settings_processor
 from django.test.client import RequestFactory
 from mock import Mock
+from sorokin_test2.core.templatetags.admin_helper import edit_link
+from django.contrib.auth.models import User
 
 
 class RequestMiddlewareTestCase(WebTest):
@@ -74,3 +76,14 @@ class SettingsContextProcessorTestCase(WebTest):
         response = self.app.get(reverse('home'))
         self.assertTrue('settings' in response.context)
         self.assertEqual(response.context['settings'], settings)
+
+
+class EditLinkTestCase(WebTest):
+    def test_tag(self):
+        obj = Profile.objects.get(id=1)
+        self.assertEqual(reverse('admin:accounts_profile_change', args=[obj.id]),
+                         edit_link(obj))
+        user = User.objects.get(id=1)
+        self.assertEqual(reverse('admin:auth_user_change', args=[user.id]),
+                         edit_link(user))
+
