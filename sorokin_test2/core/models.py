@@ -9,6 +9,8 @@ class Request(models.Model):
     params = models.TextField()
     created_at = models.DateTimeField(auto_now=True)
 
+    priority = models.IntegerField(max_length=1, default=0)
+
     class Meta:
         ordering = ('-created_at', )
 
