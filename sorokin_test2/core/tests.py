@@ -115,7 +115,10 @@ class ShowModelsCommandTestCase(WebTest):
 
 
 class Signal_HandlerTestCase(WebTest):
-    ctype = ContentType.objects.get_for_model(Profile)
+    
+    def setUp(self):
+        self.ctype = ContentType.objects.get_for_model(Profile)
+        WebTest.setUp(self)
 
     def test_create(self):
         obj = Profile.objects.get(id=1)
