@@ -82,7 +82,8 @@ class SettingsContextProcessorTestCase(WebTest):
 class EditLinkTestCase(WebTest):
     def test_tag(self):
         obj = Profile.objects.get(id=1)
-        self.assertEqual(reverse('admin:accounts_profile_change', args=[obj.id]),
+        self.assertEqual(reverse('admin:accounts_profile_change',
+                                                                args=[obj.id]),
                          edit_link(obj))
         user = User.objects.get(id=1)
         self.assertEqual(reverse('admin:auth_user_change', args=[user.id]),
@@ -99,12 +100,14 @@ class ShowModelsCommandTestCase(WebTest):
 
     def test_command_with_params(self):
         stdout = self.DummyStdout()
-        call_command('show_models', 'accounts.Profile',**{'stdout': stdout})
+        call_command('show_models', 'accounts.Profile',**{'stdout': stdout,
+                                              'stderr': self.DummyStdout()})
         self.assertTrue('accounts.Profile' in stdout.out)
         self.assertFalse('core.Request' in stdout.out)
 
     def test_command_without_params(self):
         stdout = self.DummyStdout()
-        call_command('show_models', **{'stdout': stdout})
+        call_command('show_models', **{'stdout': stdout,
+                                       'stderr': self.DummyStdout()})
         self.assertTrue('accounts.Profile' in stdout.out)
         self.assertTrue('core.Request' in stdout.out)
