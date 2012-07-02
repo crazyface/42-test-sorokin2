@@ -1,0 +1,71 @@
+body, html{
+	width: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#content{
+	width: 800px;
+	margin: 0px auto;
+	min-height: 600px;
+}
+
+#content h3{
+	font-size: 22px;
+	padding: 2px;
+	font-family: Georgia, serif;
+	line-height: 26px;
+	font-weight: normal;
+}
+
+/*#content table{
+	width: 100%;
+	text-align: left;
+}*/
+
+.requests, .requests * {
+	border: 1px solid #ccc;
+}
+.requests td,.requests th {
+	margin: 0;
+	padding: 5px;
+}
+.requests .created_at{
+	white-space: nowrap;
+}
+
+#footer{
+	width: 800px;
+	margin: 0px auto;
+	margin-top: 40px;
+}
+
+#footer a{
+	text-decoration: none;
+	color: #3e3e3e;
+	font-weight: bold;
+	margin: 0 20px;
+	font-size: 16px;
+}
+#footer a:hover{
+	text-decoration: underline;
+}
+
+.left{
+	float: left;
+}
+.right{
+	float: right;
+}
+.photo{
+	width: 400px;
+}
+
+.errorlist{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	color: #cc3333;
+	font-size: 12px;
+}
+#ui-datepicker-div { font-size: 12px; } 
