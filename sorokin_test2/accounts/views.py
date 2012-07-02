@@ -5,11 +5,13 @@ from django.views.generic.edit import UpdateView
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse_lazy
+from sorokin_test2.accounts.forms import ProfileForm
 
 
 class ProfileEditView(UpdateView):
     model = Profile
     success_url = reverse_lazy('home')
+    form_class=ProfileForm
 
     def get_object(self, **kwargs):
         return self.model.objects.get(pk=1)

@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% load i18n %}
+
+
+{% block extrahead %}
+	{{ form.media }}
+{% endblock %}
 
 {% block content %}
 	<form method='POST' enctype="multipart/form-data">{% csrf_token %}

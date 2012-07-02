@@ -1,8 +1,10 @@
+{% load admin_helper %}
 <!DOCTYPE HTML>
 <html>
 	<head>
         <title>{% block title %}{% endblock %}</title>
         <link href="{{ STATIC_URL }}css/style.css" type="text/css" media="all" rel="stylesheet">
+        <script type="text/javascript" src="{{ STATIC_URL}}js/jquery-1.7.2.min.js"></script>
         {% block extrahead %}{% endblock %}
     </head>
     <body>
@@ -10,7 +12,7 @@
 			<h3 class="text needcss">42 Coffee Cups Test Assignment
 				<span class='right'>
 					{% if user.is_authenticated %}
-						Hello, {{ user }}.<a href='{% url logout %}'>logout</a>
+						Hello, {{ user }}.<a href='{% url logout %}'>logout</a> <a href='{% edit_link user %}'>edit</a>
 					{% else %}
 						<a href='{% url login %}'>login</a>
 					{% endif %}				
