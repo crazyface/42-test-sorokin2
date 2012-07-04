@@ -60,6 +60,9 @@ body, html{
 .photo{
 	width: 400px;
 }
+.hide{
+	display: none;
+}
 
 .errorlist{
 	margin: 0;

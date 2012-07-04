@@ -47,3 +47,20 @@ class ProfileEditlViewTestCase(WebTest):
         profile = Profile.objects.filter(id=1, first_name=first_name,
                                                         last_name=last_name)
         self.assertTrue(profile.exists())
+    
+    def test_edit_ajax(self):
+        auth_form = self.app.get(reverse('login')).form
+        auth_form['username'] = 'admin'
+        auth_form['password'] = 'admin'
+        auth_form.submit()
+        first_name = 'first_name test2'
+        last_name = 'last_name test2'
+        edit_form = self.app.get(reverse('edit')).form
+        edit_form['first_name'] = first_name
+        edit_form['last_name'] = last_name
+        response = self.app.post(reverse('edit'),
+                                dict(edit_form.submit_fields()),
+                        headers={'HTTP_X_REQUESTED_WITH': 'XMLHttpRequest'})
+        profile = Profile.objects.filter(id=1, first_name=first_name,
+                                                        last_name=last_name)
+        self.assertTrue(profile.exists())
