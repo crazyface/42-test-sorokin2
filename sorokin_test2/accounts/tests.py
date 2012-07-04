@@ -11,7 +11,7 @@ from sorokin_test2.accounts.models import Profile
 from webtest.app import AppError
 
 
-class ProfileViewTestCase(WebTest):
+class ProfileDetailViewTestCase(WebTest):
 
     def test_view(self):
         response = self.app.get(reverse('home'))
@@ -28,16 +28,19 @@ class ProfileViewTestCase(WebTest):
         self.assertContains(response, expected.first_name)
         self.assertContains(response, expected.email)
 
+class ProfileEditlViewTestCase(WebTest):
+
     def test_edit_logout(self):
-        self.assertRaises(AppError, self.app.post, reverse('home'))
+        self.assertRaises(AppError, self.app.post, reverse('edit'))
 
     def test_edit_login(self):
         auth_form = self.app.get(reverse('login')).form
         auth_form['username'] = 'admin'
         auth_form['password'] = 'admin'
-        edit_form = auth_form.submit().follow().form
+        auth_form.submit()
         first_name = 'first_name test'
         last_name = 'last_name test'
+        edit_form = self.app.get(reverse('edit')).form
         edit_form['first_name'] = first_name
         edit_form['last_name'] = last_name
         edit_form.submit()

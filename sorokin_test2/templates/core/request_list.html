@@ -7,6 +7,7 @@
 		<th>Code</th>
 		<th>Method</th>
 		<th>Params</th>
+		<th><a href="{{ order_url }}">Priority</a></th>
 		<th>Time</th>
 	<tr>
 	{% for request_obj in object_list %}
@@ -15,6 +16,7 @@
 		<td>{{ request_obj.status_code }}</td>
 		<td>{{ request_obj.method }}</td>
 		<td>{{ request_obj.params }}</td>
+		<td>{{ request_obj.priority }}</td>
 		<td class='created_at'>{{ request_obj.created_at|date:'Y-M-d h:m:s' }}</td>
 	</tr>
 	{% endfor %}
