@@ -6,6 +6,7 @@ from sorokin_test2.accounts.widgets import Calendar
 
 class ProfileForm(forms.ModelForm):
     date_of_birth = forms.DateField(widget=Calendar)
-
+    
     class Meta:
         model = Profile
+        exclude = ['photo']
