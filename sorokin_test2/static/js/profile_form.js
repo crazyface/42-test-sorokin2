@@ -16,7 +16,7 @@ $(document).ready(function(){
 	        debug: false,
 	        multiple: false,
 	        allowedExtensions: ['jpg', 'jpeg', 'png'],
-	        params : {"CSRFToken": getCookie('csrftoken')},
+	        params : {"csrfmiddlewaretoken": getCookie('csrftoken')},
 	        onComplete: function(id, fileName, responseJSON){
 	        	if(responseJSON.success){
 	        		$('.photo').attr('src', responseJSON.url)
