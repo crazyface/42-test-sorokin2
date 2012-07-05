@@ -19,7 +19,7 @@ var qq = qq || {};
 qq.extend = function(first, second){
     for (var prop in second){
         first[prop] = second[prop];
-    }
+    }z
 };  
 
 /**
@@ -1195,15 +1195,12 @@ qq.extend(qq.UploadHandlerXhr.prototype, {
         // build query string
         params = params || {};
         params['qqfile'] = name;
-        csrf = params.CSRFToken
-        delete params.CSRFToken
         var queryString = qq.obj2url(params, this._options.action);
 
         xhr.open("POST", queryString, true);
         xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
         xhr.setRequestHeader("X-File-Name", encodeURIComponent(name));
         xhr.setRequestHeader("Content-Type", "application/octet-stream");
-        xhr.setRequestHeader("X-CSRFToken", csrf);
         xhr.send(file);
     },
     _onComplete: function(id, xhr){
