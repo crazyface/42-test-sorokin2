@@ -44,7 +44,8 @@ class ProfileEditView(GetObjectMixIn, UpdateView):
             self.object = self.get_object()
             form_class = self.get_form_class()
             form = self.get_form(form_class)
-            form.is_valid()
+            if form.is_valid():
+                form.save()
             return self.ajax(form)
         return super(ProfileEditView, self).post(request, *args, **kwargs)
 
