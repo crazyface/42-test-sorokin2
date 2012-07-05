@@ -19,7 +19,7 @@ var qq = qq || {};
 qq.extend = function(first, second){
     for (var prop in second){
         first[prop] = second[prop];
-    }z
+    }
 };  
 
 /**
